@@ -1,0 +1,111 @@
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    overflow: auto;
+    flex-direction: inherit;
+}
+
+.modal #modal-picture {
+    height: 100%;
+    width: 40%;
+    float: left;
+}
+
+.modal #modal-picture img {
+    width: 100%;
+    transition: 0.5s;
+}
+
+.modal #modal-picture:hover img {
+    transform: rotate(-5deg) scale(1.10);
+    opacity: 0.5;
+}
+
+.modal #modal-form {
+    height: 100%;
+    width: 60%;
+    float: right;
+    background: #74ebd5;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ACB6E5, #74ebd5);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ACB6E5, #74ebd5);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border-radius: 15px 50px;
+}
+
+.modal #modal-form h2 {
+    padding: 20px 20px 0px 30px;
+}
+
+.modal .form {
+    padding: 20px;
+    display: flex;
+}
+
+.modal .form label {
+    margin-left: 5px;
+    margin-bottom: 1px;
+    margin-top: 15px;
+    width: 30%;
+}
+
+.modal .form input {
+    padding: 5px;
+    border-radius: 10px;
+    border-style: groove;
+    width: -webkit-fill-available;
+    height: 40px;
+    box-shadow: 5px 4px 10px 1px #000;
+    margin: 10px 10px 10px 3px;
+}
+
+.modal #fee,
+.modal #form-info-myself input {
+    background-color: #ccc;
+}
+
+.modal .form-check {
+    margin-top: -10px;
+    margin-left: 30px;
+    padding-bottom: 10px;
+}
+
+.modal .btn-confirm {
+
+}
+
+.modal .btn-confirm button {
+    margin: 10px 20px 20px 10px;
+    border-radius: 10px;
+    padding: 8px;
+    color: #000;
+    font-weight: bold;
+    background-color: #ccc;
+    width: 50%;
+    margin-left: 30%;
+    margin-right: 30%;
+
+}
+
+.modal .btn-confirm:hover button {
+    background-color: #33ff99;
+    ;
+}

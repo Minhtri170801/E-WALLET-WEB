@@ -9,11 +9,15 @@ body {
 }
 
 p{
-  margin: auto;
+
 }
 
 h2{
 
+}
+
+label{
+  font-weight: bold;
 }
 
 .full-bg{
@@ -61,13 +65,15 @@ h2{
 
 #body #table-detail,
 #body #table-fee,
-#body label,
 #body .select-semester{
   width: 100%;
 }
 
 #body label{
-  font-weight: bold;
+  width: -webkit-fill-available;
+}
+
+#body #semesters label{
   margin-top: 30px;
 }
 

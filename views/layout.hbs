@@ -1,236 +1,303 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Đóng học phí</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-  </head>
-  <body>
-    <div class="container">
-      <div class="main">
-        {{!-- Start Header --}}
-        <div class="full-bg" id="header">
-          <h3>Đóng học phí</h3>
-          <a id="sign-out" href="">Đăng xuất</a>      
+
+<head>
+  <title>Đóng học phí</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/pay-form.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="main">
+      {{!-- Start Header --}}
+      <div class="full-bg" id="header">
+        <h3>Đóng học phí</h3>
+        <a id="sign-out" href="">Đăng xuất</a>
+      </div>
+      {{!-- End Header --}}
+
+
+      {{!-- Start Body --}}
+      <div class="full-bg-body" id="body">
+        <div id="semesters">
+          <label for="semesterID">Học kỳ| Semester:</label>
+          <select class="select-semester">
+            <option value="HK1">Học kỳ 1/ 2022-2023</option>
+          </select>
         </div>
-        {{!-- End Header --}}
 
-
-        {{!-- Start Body --}}
-        <div class="full-bg-body" id="body">
-          <div id="semesters">
-            <label for="semesterID">Học kỳ| Semester:</label>
-            <select class="select-semester">
-              <option value="HK1">Học kỳ 1/ 2022-2023</option>
-            </select>
-          </div>
-
-          <div class="table-fee">
-            <table border="1">
-              <tr class="table-fee-row-1">
-                <th>
-                  NỢ KỲ TRƯỚC 
-                  <br>
-                  (Previous Pending Charges)
-                </th>
-                <th>
-                  HỌC PHÍ HỌC KỲ
-                  <br>
-                  (Semester Tuition)
-                </th>
-                <th>
-                  MIỄN GIẢM
-                  <br>
-                  (Reduction)
-                </th>
-                <th>
-                  TỔNG HP PHẢI NỘP
-                  <br>
-                  (Total tuition unpaid)
-                </th>
-                <th>
-                  TỔNG HỌC PHÍ ĐÃ NỘP
-                  <br>
-                  (Total tuition paid)
-                </th>
-                <th>
-                  SỐ TIỀN CÒN PHẢI NỘP
-                  <br>
-                  (Remaining unpaid tuition)
-                </th>
-                <th>
-                  GHI CHÚ
-                  <br>
-                  (Note)
-                </th>
-              </tr>
-              <tr>
-                <th>0</th>
-                <th>9,120,000</th>
-                <th>0</th>
-                <th>9,120,000</th>
-                <th>0</th>
-                <th>9,120,000</th>
-                <th>0</th>
-              </tr>
-            </table>
-          </div>
-
-          <div class="content-fee">
-            <p>Những môn đã tính học phí trong học kỳ | Courses that have included tuition fees in the semester</p>
-          </div> 
-
-          <div class="table-fee">
-            <table border="1">
-              <tr class="table-fee-row-1">
-                <th>
-                    Mã MH
-                    <br>
-                    (Course code)
-                  </th>
-                  <th>
-                    Tên MH
-                    <br>
-                    (Course name)
-                  </th>
-                  <th>
-                    Ngày đăng ký (trên website ĐKMH)
-                    <br>
-                    (Registration date (on the Course Registration website))
-                  </th>
-                  <th>
-                    Số tiền
-                    <br>
-                    (Amount)
-                  </th>  
-              </tr>  
-              <tr>
-                <th>502048</th>
-                <th>Nhập môn tính toán đa phương tiện	</th>
-                <th>16:10:49 25/04/2022	</th>
-                <th>2,160,000</th>
-              </tr>
-              <tr>
-                <th>504076</th>
-                <th>Phát triển trò chơi	</th>
-                <th>16:10:56 25/04/2022	</th>
-                <th>2,400,000</th>
-              </tr>
-              <tr>
-                <th>503075</th>
-                <th>An toàn mạng không dây và di động	</th>
-                <th>16:15:58 25/04/2022	</th>
-                <th>2,400,000</th>
-              </tr>
-              <tr>
-                <th>504070</th>
-                <th>Kiến trúc hướng dịch vụ	</th>
-                <th>09:09:29 09/05/2022	</th>
-                <th>2,160,000</th>
-              </tr>
-              <tr>
-                <td colspan="2">Tổng cộng | Total: 4 môn</td>
-                <td colspan="2">Tổng tiền (HỌC PHÍ HỌC KỲ) | Total (Semester Tuition): 9,120,000</td>
-              </tr>
-            </table>  
-          </div>
-
-
-          <div class="content-fee"> 
-            <p>Môn chưa tính học phí trong học kỳ | Courses that have not included tuition fees in the semester</p>
-          </div>
-
-          <div class="table-fee">
-            <table border="1">
-              <tr class="table-fee-row-1">
-                <th>
-                    Mã MH
-                    <br>
-                    (Course code)
-                  </th>
-                  <th>
-                    Tên MH
-                    <br>
-                    (Course name)
-                  </th>
-                  <th>
-                    Nhóm
-                    <br>
-                    (Group)
-                  </th> 
-                  <th>
-                    Ngày đăng ký (trên website ĐKMH)
-                    <br>
-                    (Registration date (on the Course Registration website))
-                  </th> 
-                  <th>
-                    Trạng thái
-                    <br>
-                    (Status)
-                  </th>  
-              </tr>  
-              <tr>
-                <th>504078</th>
-                <th>Dự án Công nghệ thông tin 1</th>
-                <th>3</th>
-                <th>13:04:33 22/09/2022</th>
-                <th>Chờ xét</th>
-              </tr>
-              <tr>
-                <td colspan="5">Tổng cộng | Total: 1 môn</td>
-              </tr>
-            </table>
-          </div>
-
-          <div class="content-fee">
-            <p>Lịch sử thanh toán | Payment history</p>
-          </div>
-
-          <div class="table-fee">
-            <table border="1">
-              <tr class="table-fee-row-1">
-                <th>
-                    Ngày đóng
-                    <br>
-                    (Date of payment) 
-                  </th>
-                  <th>
-                    Số tiền
-                    <br>
-                    (Amount)
-                  </th>
-                  <th>
-                    Hình thức thanh toán
-                    <br>
-                    (Method of payment)
-                  </th>
-              </tr>  
-              <tr>
-                <th></th>
-                <th>0	</th>
-                <th></th>
-              </tr>
-            </table>
-          </div>
-
-          <div class="content-note"> 
-            <p>Hình thức thanh toán: TM: tiền mặt. CK: Chuyển khoản | Method of payment: TM - Cash; CK: Transfer</p>
-          </div>
-
-          <div class="btn-pay">
-            <button>Thanh toán</button>
-          </div>
-          
+        <div class="table-fee">
+          <table border="1">
+            <tr class="table-fee-row-1">
+              <th>
+                NỢ KỲ TRƯỚC
+                <br>
+                (Previous Pending Charges)
+              </th>
+              <th>
+                HỌC PHÍ HỌC KỲ
+                <br>
+                (Semester Tuition)
+              </th>
+              <th>
+                MIỄN GIẢM
+                <br>
+                (Reduction)
+              </th>
+              <th>
+                TỔNG HP PHẢI NỘP
+                <br>
+                (Total tuition unpaid)
+              </th>
+              <th>
+                TỔNG HỌC PHÍ ĐÃ NỘP
+                <br>
+                (Total tuition paid)
+              </th>
+              <th>
+                SỐ TIỀN CÒN PHẢI NỘP
+                <br>
+                (Remaining unpaid tuition)
+              </th>
+              <th>
+                GHI CHÚ
+                <br>
+                (Note)
+              </th>
+            </tr>
+            <tr>
+              <th>0</th>
+              <th>9,120,000</th>
+              <th>0</th>
+              <th>9,120,000</th>
+              <th>0</th>
+              <th>9,120,000</th>
+              <th>0</th>
+            </tr>
+          </table>
         </div>
-        {{!-- End Body --}}
-        <div class="full-bg"  id="footer">
-          <h3>
-            Kiến trúc hướng dịch vụ
-          </h3>
+
+        <div class="content-fee">
+          <p>Những môn đã tính học phí trong học kỳ | Courses that have included tuition fees in the semester</p>
+        </div>
+
+        <div class="table-fee">
+          <table border="1">
+            <tr class="table-fee-row-1">
+              <th>
+                Mã MH
+                <br>
+                (Course code)
+              </th>
+              <th>
+                Tên MH
+                <br>
+                (Course name)
+              </th>
+              <th>
+                Ngày đăng ký (trên website ĐKMH)
+                <br>
+                (Registration date (on the Course Registration website))
+              </th>
+              <th>
+                Số tiền
+                <br>
+                (Amount)
+              </th>
+            </tr>
+            <tr>
+              <th>502048</th>
+              <th>Nhập môn tính toán đa phương tiện </th>
+              <th>16:10:49 25/04/2022 </th>
+              <th>2,160,000</th>
+            </tr>
+            <tr>
+              <th>504076</th>
+              <th>Phát triển trò chơi </th>
+              <th>16:10:56 25/04/2022 </th>
+              <th>2,400,000</th>
+            </tr>
+            <tr>
+              <th>503075</th>
+              <th>An toàn mạng không dây và di động </th>
+              <th>16:15:58 25/04/2022 </th>
+              <th>2,400,000</th>
+            </tr>
+            <tr>
+              <th>504070</th>
+              <th>Kiến trúc hướng dịch vụ </th>
+              <th>09:09:29 09/05/2022 </th>
+              <th>2,160,000</th>
+            </tr>
+            <tr>
+              <td colspan="2">Tổng cộng | Total: 4 môn</td>
+              <td colspan="2">Tổng tiền (HỌC PHÍ HỌC KỲ) | Total (Semester Tuition): 9,120,000</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="content-fee">
+          <p>Môn chưa tính học phí trong học kỳ | Courses that have not included tuition fees in the semester</p>
+        </div>
+
+        <div class="table-fee">
+          <table border="1">
+            <tr class="table-fee-row-1">
+              <th>
+                Mã MH
+                <br>
+                (Course code)
+              </th>
+              <th>
+                Tên MH
+                <br>
+                (Course name)
+              </th>
+              <th>
+                Nhóm
+                <br>
+                (Group)
+              </th>
+              <th>
+                Ngày đăng ký (trên website ĐKMH)
+                <br>
+                (Registration date (on the Course Registration website))
+              </th>
+              <th>
+                Trạng thái
+                <br>
+                (Status)
+              </th>
+            </tr>
+            <tr>
+              <th>504078</th>
+              <th>Dự án Công nghệ thông tin 1</th>
+              <th>3</th>
+              <th>13:04:33 22/09/2022</th>
+              <th>Chờ xét</th>
+            </tr>
+            <tr>
+              <td colspan="5">Tổng cộng | Total: 1 môn</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="content-fee">
+          <p>Lịch sử thanh toán | Payment history</p>
+        </div>
+
+        <div class="table-fee">
+          <table border="1">
+            <tr class="table-fee-row-1">
+              <th>
+                Ngày đóng
+                <br>
+                (Date of payment)
+              </th>
+              <th>
+                Số tiền
+                <br>
+                (Amount)
+              </th>
+              <th>
+                Hình thức thanh toán
+                <br>
+                (Method of payment)
+              </th>
+            </tr>
+            <tr>
+              <th></th>
+              <th>0 </th>
+              <th></th>
+            </tr>
+          </table>
+        </div>
+
+        <div class="content-note">
+          <p>Hình thức thanh toán: TM: tiền mặt. CK: Chuyển khoản | Method of payment: TM - Cash; CK: Transfer</p>
+        </div>
+
+        <div class="btn-pay">
+          <button id="pay-fee">Thanh toán</button>
+        </div>
+
+        <!-- The Modal -->
+        <div id="pay-form" class="modal">
+
+          <!-- Modal content -->
+          <div class="modal-content">
+
+            <div id="modal-picture">
+              <img src="/images/img-banking.jpeg" alt="">
+            </div>
+
+            <div id="modal-form">
+              <h2>Internet Banking</h2>
+              <div class="form">
+                <div id="form-info-myself">
+                  <label>Họ và tên</label>
+                  <input type="text" id="name-pay"></input>
+
+                  <label>Số điện thoại</label>
+                  <input type="text" id="phone"></input>
+
+                  <label>Địa chỉ email</label>
+                  <input type="text" id="email"></input>
+                </div>
+
+                <div id="form-info-fee">
+                  <label>Mã số sinh viên</label>
+                  <input type="text" id="mssv" placeholder="ex: 123456"></input>
+
+                  <label>Họ tên sinh viên</label>
+                  <input type="text" id="name-student"></input>
+
+                  <label>Số tiền cần nộp</label>
+                  <input type="text" id="fee"></input>
+                </div>
+
+                <div class="form-info-pay">
+                  <label>Số dư khả dụng</label>
+                  <input type="number" id="available-balance" placeholder="ex: 123456"></input>
+
+                  <label>Số tiền cần thanh toán</label>
+                  <input type="number" id="pay-fee"></input>
+                </div>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Vui lòng kiểm tra lại thông tin. Mọi sai sót xin vui lòng liên hệ <a href="">@gmai.com</a> hoặc
+                  hotline <a href="">0000000</a>
+                </label>
+              </div>
+              <div class="btn-confirm">
+                <button id="comfirm-pay">Xác nhận</button>
+              </div>
+            </div>
+            <div class="form-close">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+          </div>
         </div>
       </div>
+      {{!-- End Body --}}
+
+      {{!-- Start Footer --}}
+      <div class="full-bg" id="footer">
+        <h3>
+          Kiến trúc hướng dịch vụ
+        </h3>
+      </div>
+      {{!-- End Footer --}}
     </div>
-    
-  </body>
+  </div>
+  <script src="/javascripts/pay-form.js"></script>
+</body>
+
 </html>
