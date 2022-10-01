@@ -1,3 +1,11 @@
+.col-xl-12{
+    margin-left: -30px !important;
+}
+
+.col-xl-8{
+    margin-left: -35px !important;
+}
+
 .modal {
     display: none;
     position: fixed;
@@ -24,8 +32,9 @@
 
 .modal #modal-picture {
     height: 100%;
-    width: 40%;
+    width: 20%;
     float: left;
+    margin-top: 100px;
 }
 
 .modal #modal-picture img {
@@ -40,7 +49,7 @@
 
 .modal #modal-form {
     height: 100%;
-    width: 60%;
+    width: 100%;
     float: right;
     background: #74ebd5;
     /* fallback for old browsers */
@@ -49,15 +58,16 @@
     background: linear-gradient(to right, #ACB6E5, #74ebd5);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     border-radius: 15px 50px;
+    
 }
 
 .modal #modal-form h2 {
     padding: 20px 20px 0px 30px;
 }
 
-.modal .form {
+.modal .form  {
     padding: 20px;
-    display: flex;
+    /* display: flex; */
 }
 
 .modal .form label {
@@ -82,30 +92,45 @@
     background-color: #ccc;
 }
 
+.modal #form-info-myself,
+.modal #form-info-fee,
+.modal #form-info-pay{
+    display: inline-grid;
+    padding: initial;
+}
+
 .modal .form-check {
     margin-top: -10px;
     margin-left: 30px;
     padding-bottom: 10px;
 }
 
-.modal .btn-confirm {
-
-}
+.modal .btn-confirm {}
 
 .modal .btn-confirm button {
     margin: 10px 20px 20px 10px;
     border-radius: 10px;
     padding: 8px;
-    color: #000;
-    font-weight: bold;
-    background-color: #ccc;
+    color: #fff;
+    font-weight: bold;;
     width: 50%;
     margin-left: 30%;
     margin-right: 30%;
-
+    background: rgb(6, 14, 131);
+    background: linear-gradient(0deg, rgba(6, 14, 131, 1) 0%, rgba(12, 25, 180, 1) 100%);
+    border: none;
 }
 
 .modal .btn-confirm:hover button {
-    background-color: #33ff99;
-    ;
+    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
+        7px 7px 20px 0px rgba(0, 0, 0, .1),
+        4px 4px 5px 0px rgba(0, 0, 0, .1);
+    background: rgb(0, 3, 255);
+    background: linear-gradient(0deg, rgba(0, 3, 255, 1) 0%, rgba(2, 126, 251, 1) 100%);
+
+}
+
+.close{
+    font-size: 40px !important;
+    margin-top: -10px;
 }
