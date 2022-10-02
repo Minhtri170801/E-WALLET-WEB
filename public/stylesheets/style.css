@@ -27,7 +27,6 @@ label{
 
 .full-bg-body{
   box-shadow: 0 0 0 100vmax beige;
-  clip-path:inset(0 -100vmax);
 }
 
 #header{
@@ -61,6 +60,7 @@ label{
 
 #body{
   background-color: beige;
+  height: 100%;
 }
 
 #body #table-detail,

@@ -6,48 +6,47 @@
     margin-left: -35px !important;
 }
 
-.modal {
-    display: none;
-    position: fixed;
+.form-fee {
+    display: block;
+    position: initial;
     z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
+    overflow: none;
     background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: beige;
 }
 
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 31px auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
-    overflow: auto;
+    width: 100%;
     flex-direction: inherit;
 }
 
-.modal #modal-picture {
+.form-fee #form-picture {
     height: 100%;
     width: 20%;
     float: left;
     margin-top: 100px;
 }
 
-.modal #modal-picture img {
+.form-fee #form-picture img {
     width: 100%;
     transition: 0.5s;
 }
 
-.modal #modal-picture:hover img {
+.form-fee #form-picture:hover img {
     transform: rotate(-5deg) scale(1.10);
     opacity: 0.5;
 }
 
-.modal #modal-form {
+.form-fee #form-content {
     height: 100%;
     width: 100%;
     float: right;
@@ -61,23 +60,23 @@
     
 }
 
-.modal #modal-form h2 {
+.form-fee #form-content h2 {
     padding: 20px 20px 0px 30px;
 }
 
-.modal .form  {
+.form-fee .form  {
     padding: 20px;
     /* display: flex; */
 }
 
-.modal .form label {
+.form-fee .form label {
     margin-left: 5px;
     margin-bottom: 1px;
     margin-top: 15px;
     width: 30%;
 }
 
-.modal .form input {
+.form-fee .form input {
     padding: 5px;
     border-radius: 10px;
     border-style: groove;
@@ -87,27 +86,27 @@
     margin: 10px 10px 10px 3px;
 }
 
-.modal #fee,
-.modal #form-info-myself input {
+.form-fee #fee,
+.form-fee #form-info-myself input {
     background-color: #ccc;
 }
 
-.modal #form-info-myself,
-.modal #form-info-fee,
-.modal #form-info-pay{
+.form-fee #form-info-myself,
+.form-fee #form-info-fee,
+.form-fee #form-info-pay{
     display: inline-grid;
     padding: initial;
 }
 
-.modal .form-check {
+.form-fee .form-check {
     margin-top: -10px;
     margin-left: 30px;
     padding-bottom: 10px;
 }
 
-.modal .btn-confirm {}
+.form-fee .btn-confirm {}
 
-.modal .btn-confirm button {
+.form-fee .btn-confirm button {
     margin: 10px 20px 20px 10px;
     border-radius: 10px;
     padding: 8px;
@@ -121,16 +120,11 @@
     border: none;
 }
 
-.modal .btn-confirm:hover button {
+.form-fee .btn-confirm:hover button {
     box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
         7px 7px 20px 0px rgba(0, 0, 0, .1),
         4px 4px 5px 0px rgba(0, 0, 0, .1);
     background: rgb(0, 3, 255);
     background: linear-gradient(0deg, rgba(0, 3, 255, 1) 0%, rgba(2, 126, 251, 1) 100%);
 
-}
-
-.close{
-    font-size: 40px !important;
-    margin-top: -10px;
 }
