@@ -3,20 +3,20 @@ var router = express.Router();
 var check = require('../lib/check')
 var Account = require('../models/account') 
 /* GET home page. */
-router.get('/', check.isNotLogin, function(req, res) {
-  var account = req.session.account;
-  console.log(account);
-  var information = {
-    title: 'Đóng học phí',
-    fullname: account.name,
-    phone: account.phoneNumber,
-    email: account.email,
-    money: account.money,
-  }
-  res.render('index', information);
+router.get('/', function(req, res) {
+  // var account = req.session.account;
+  // console.log(account);
+  // var information = {
+  //   title: 'Đóng học phí',
+  //   fullname: account.name,
+  //   phone: account.phoneNumber,
+  //   email: account.email,
+  //   money: account.money,
+  // }
+  res.render('index');
 });
 
-router.get('/login', check.isLogin, function(req, res) {
+router.get('/login', function(req, res) {
   var account = '' || req.cookies.username;
   res.clearCookie("username");
   res.render('login', { title: 'Đăng nhập', username: account});
