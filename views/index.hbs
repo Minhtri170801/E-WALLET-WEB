@@ -4,7 +4,7 @@
     <nav class="navbar navbar-expand-sm sticky-top navbar-light bg-light">
       <div class="header full-bg">
         <h3>Đóng học phí</h3>
-        <a id="sign-out" href="">Đăng xuất</a>
+        <a id="sign-out" href="/logout">Đăng xuất</a>
       </div>
     </nav>
     {{!-- End Header --}}
@@ -25,13 +25,13 @@
               <div class="form">
                 <div class="col-12 col-sm-12 col-md-4" id="form-info-myself">
                   <label>Họ và tên</label>
-                  <input type="text" id="name-pay" readonly></input>
+                  <input type="text" id="name-pay" value="{{fullname}}" readonly></input>
 
                   <label>Số điện thoại</label>
-                  <input type="text" id="phone" readonly></input>
+                  <input type="text" id="phone" value="{{phone}}" readonly></input>
 
                   <label>Địa chỉ email</label>
-                  <input type="text" id="email" readonly></input>
+                  <input type="text" id="email" value="{{email}}" readonly></input>
                 </div>
 
                 <div class="col-12 col-sm-12 col-md-4" id="form-info-fee">
@@ -47,7 +47,7 @@
 
                 <div class="col-12 col-sm-12 col-md-3" id="form-info-pay">
                   <label>Số dư khả dụng</label>
-                  <input type="number" id="available-balance" readonly></input>
+                  <input type="number" id="available-balance" value="{{money}}" readonly></input>
 
                   <label>Số tiền cần thanh toán</label>
                   <input type="number" id="pay-fee" readonly></input>
@@ -104,3 +104,5 @@
     {{!-- End Footer --}}
   </div>
 </div>
+
+<script src="/javascripts/pay-form.js"></script>
