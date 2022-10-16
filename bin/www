@@ -10,10 +10,6 @@ var http = require('http');
 var mongoose = require('mongoose');
 
 /**
- * Get port from environment and store in Express.
- */
-
-/**
 * Kết nối MongoDB.
 */
 mongoose.connect('mongodb://127.0.0.1:27017/GK_SOA', {
@@ -22,7 +18,9 @@ mongoose.connect('mongodb://127.0.0.1:27017/GK_SOA', {
 }).then(() => console.log("Kết nối MongoDB thành công!"))
   .catch((e) => console.log(e))
 
-
+/**
+ * Get port from environment and store in Express.
+ */
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 

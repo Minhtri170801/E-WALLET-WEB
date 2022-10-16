@@ -3,25 +3,42 @@ var router = express.Router();
 var check = require('../lib/check')
 var Account = require('../models/account') 
 /* GET home page. */
-router.get('/', function(req, res) {
-  // var account = req.session.account;
-  // console.log(account);
-  // var information = {
-  //   title: 'Đóng học phí',
-  //   fullname: account.name,
-  //   phone: account.phoneNumber,
-  //   email: account.email,
-  //   money: account.money,
-  // }
-  res.render('index');
+router.get('/', check.isNotLogin,function(req, res) {
+  var account = req.session.account;
+
+  var information = {
+    title: 'Đóng học phí',
+    fullname: account.name,
+    phone: account.phoneNumber,
+    email: account.email,
+    money: account.money,
+    css: ['style.css','form-fee.css','login.css']
+  }
+  res.render('index', information);
 });
 
-router.get('/login', function(req, res) {
+/* GET OTP page. */
+router.get('/otp', function(req,res) {
+  var information = {
+    title: 'OTP',
+    css: ['otp.css']
+  }
+  res.render('otp',information);
+});
+
+/* GET login page. */
+router.get('/login', check.isLogin,function(req, res) {
   var account = '' || req.cookies.username;
   res.clearCookie("username");
-  res.render('login', { title: 'Đăng nhập', username: account});
+  var information = {
+    title: 'Đăng nhập',
+    username: account,
+    css: ['style.css','form-fee.css','login.css']
+  }
+  res.render('login', information);
 });
 
+/* POST home page. */
 router.post('/login', function(req,res) {
   var {username, password} = req.body;
 
@@ -37,7 +54,7 @@ router.post('/login', function(req,res) {
   res.render('login', { title: 'Đăng nhập' });
 });
 
-
+/* GET logout. */
 router.get('/logout', function(req,res) {
   req.session.destroy();
   res.redirect('/login');

@@ -1,0 +1,32 @@
+<div class="otp-box">
+    <form>
+        <h1 class="heading">Vui lòng nhập mã OTP đã được gửi vào email của bạn</h1>
+        <p class="para">Mã đã được gửi tới email: xxx@gmail.com</p>
+        <div class="userInput">
+            <input type="text" id='ist' maxlength="1" onkeyup="clickEvent(this,'sec')">
+            <input type="text" id="sec" maxlength="1" onkeyup="clickEvent(this,'third')">
+            <input type="text" id="third" maxlength="1" onkeyup="clickEvent(this,'fourth')">
+            <input type="text" id="fourth" maxlength="1" onkeyup="clickEvent(this,'fifth')">
+            <input type="text" id="fifth" maxlength="1">
+        </div>
+        <div class="alert alert-danger mx-auto col-10 col-sm-10 col-md-8" role="alert">
+            This is a danger alert—check it out!
+        </div>
+        <div class="submit">
+            <button class="custom-btn btn-submit" type="submit">
+                <span>Xác nhận</span>
+            </button>
+        </div>
+        <p class="para">Mã OTP sẽ hết hiệu lực trong vòng
+            <span class="timer">
+                <span id="counter"></span>
+            </span>
+        </p>
+        <span class="btn-send" id="verifiBtn">
+            <button type="submit">Mã đã được gửi</button>
+        </span>
+    </form>
+</div>
+
+<script src="/javascripts/submit-otp.js"></script>
+<script src="/javascripts/countdown.js"></script>

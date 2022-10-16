@@ -36,7 +36,7 @@
 
                 <div class="col-12 col-sm-12 col-md-4" id="form-info-fee">
                   <label>Mã số sinh viên</label>
-                  <input type="text" id="mssv" minlength="6" maxlength="6" placeholder="ex: 123456" required></input>
+                  <input type="text" id="mssv" minlength="6" maxlength="8" placeholder="ex: 123456" required></input>
 
                   <label>Họ tên sinh viên</label>
                   <input type="text" id="name-student" readonly></input>
@@ -53,13 +53,16 @@
                   <input type="number" id="pay-fee" readonly></input>
                 </div>
               </div>
- 
+
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
                 <label class="form-check-label" for="flexCheckDefault">
                   Vui lòng kiểm tra lại thông tin. Mọi sai sót xin vui lòng liên hệ <a href="">@gmai.com</a> hoặc
                   hotline <a href="">0000000</a>
                 </label>
+              </div>
+              <div class="alert alert-danger m-auto col-10 col-sm-10 col-md-8" role="alert">
+                This is a danger alert—check it out!
               </div>
               <div class="custom-btn btn-confirm">
                 <button id="comfirm-pay" type="button" class="btn btn-primary" data-toggle="modal"
