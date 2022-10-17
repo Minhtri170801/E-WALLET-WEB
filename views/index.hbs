@@ -11,7 +11,7 @@
 
 
     {{!-- Start Body --}}
-    <form>
+    <form method="POST">
       <div class="body full-bg-body" id="body">
         <div class="form-fee ">
           <div class="modal-content">
@@ -31,12 +31,12 @@
                   <input type="text" id="phone" value="{{phone}}" readonly></input>
 
                   <label>Địa chỉ email</label>
-                  <input type="text" id="email" value="{{email}}" readonly></input>
+                  <input type="text" id="email" value="{{email}}" name="email" readonly></input>
                 </div>
 
                 <div class="col-12 col-sm-12 col-md-4" id="form-info-fee">
                   <label>Mã số sinh viên</label>
-                  <input type="text" id="mssv" minlength="6" maxlength="8" placeholder="ex: 123456" required></input>
+                  <input type="text" id="mssv" minlength="6" maxlength="8" placeholder="ex: 123456" name="MSSV" required></input>
 
                   <label>Họ tên sinh viên</label>
                   <input type="text" id="name-student" readonly></input>

@@ -1,9 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var check = require('../lib/check')
-var Account = require('../models/account') 
+var check = require('../lib/check');
+var randomOtp = require('../lib/randomOTP');
+var Account = require('../models/account');
+const fetch = require('node-fetch');
+const student = require('../models/student');
+const account = require('../models/account');
 /* GET home page. */
-router.get('/', check.isNotLogin,function(req, res) {
+router.get('/', check.isNotLogin, function (req, res) {
   var account = req.session.account;
 
   var information = {
@@ -12,38 +16,64 @@ router.get('/', check.isNotLogin,function(req, res) {
     phone: account.phoneNumber,
     email: account.email,
     money: account.money,
-    css: ['style.css','form-fee.css','login.css']
+    css: ['style.css', 'form-fee.css', 'login.css']
   }
   res.render('index', information);
 });
 
+/* POST home page. */
+router.post('/', function (req, res) {
+  var { email, MSSV } = req.body;
+  fetch('http://localhost:3000/api/student/' + MSSV)
+    .then(res => res.json())
+    .then(student => {
+      if (student.code == 0) {
+        Account.findOne({ email: email }, (err, account) => {
+          if (err || account == null)
+            return res.redirect('/');
+          var st = student.student  
+      
+          if (account.money < st.fee) {
+            //So tien khong du
+            return res.redirect('/');
+          }
+          randomOtp.createOTP(email);
+          return res.redirect('/otp');
+        })
+      }
+      else {
+        return res.redirect('/');
+      }
+    });
+})
+
 /* GET OTP page. */
-router.get('/otp', function(req,res) {
+router.get('/otp', function (req, res) {
   var information = {
     title: 'OTP',
     css: ['otp.css']
   }
-  res.render('otp',information);
+  res.render('otp', information);
 });
 
 /* GET login page. */
-router.get('/login', check.isLogin,function(req, res) {
+router.get('/login', check.isLogin, function (req, res) {
   var account = '' || req.cookies.username;
   res.clearCookie("username");
   var information = {
     title: 'Đăng nhập',
     username: account,
-    css: ['style.css','form-fee.css','login.css']
+    css: ['style.css', 'form-fee.css', 'login.css']
   }
   res.render('login', information);
 });
 
-/* POST home page. */
-router.post('/login', function(req,res) {
-  var {username, password} = req.body;
+/* POST login page. */
+router.post('/login', function (req, res) {
+  var { username, password } = req.body;
 
-  Account.findOne({username: username, password: password}, (err,account) => {
-    if(err || account == null) {
+  Account.findOne({ username: username, password: password }, (err, account) => {
+    if (err || account == null) {
       res.cookie("username", username);
       return res.redirect('/login');
     }
@@ -55,7 +85,7 @@ router.post('/login', function(req,res) {
 });
 
 /* GET logout. */
-router.get('/logout', function(req,res) {
+router.get('/logout', function (req, res) {
   req.session.destroy();
   res.redirect('/login');
 })
