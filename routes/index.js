@@ -79,9 +79,7 @@ router.post('/login', function (req, res) {
     }
     req.session.account = account;
     return res.redirect('/');
-
   })
-  res.render('login', { title: 'Đăng nhập' });
 });
 
 /* GET logout. */

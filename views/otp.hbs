@@ -9,14 +9,18 @@
             <input type="text" id="fourth" maxlength="1" onkeyup="clickEvent(this,'fifth')">
             <input type="text" id="fifth" maxlength="1">
         </div>
-        <div class="alert alert-danger mx-auto col-10 col-sm-10 col-md-8" role="alert">
+        {{!-- <div class="alert alert-danger mx-auto col-10 col-sm-10 col-md-8" role="alert">
             This is a danger alert—check it out!
+        </div> --}}
+        <div class="alert-validable" role="alert">
+            <p class="para">This is a danger alert—check it out!</p>
         </div>
         <div class="submit">
             <button class="custom-btn btn-submit" type="submit">
                 <span>Xác nhận</span>
             </button>
         </div>
+        <p id="demo"></p>
         <p class="para">Mã OTP sẽ hết hiệu lực trong vòng
             <span class="timer">
                 <span id="counter"></span>
@@ -25,6 +29,19 @@
         <span class="btn-send" id="verifiBtn">
             <button type="submit">Mã đã được gửi</button>
         </span>
+
+        <div class="return">
+            <button class="btn-return" type="button" onclick="history.go(-2)">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-arrow-left-square-fill"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z">
+                    </path>
+                </svg>
+                Quay lại
+            </button>
+
+        </div>
     </form>
 </div>
 

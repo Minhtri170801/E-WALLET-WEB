@@ -63,6 +63,25 @@ body {
     font-size: 12px;
 }
 
+.login-box .alert-validable{
+    /* visibility: hidden; */
+    margin-top: -10px;
+    margin-bottom: 20px;
+    border: 1px solid red;
+    background: red;
+    color: #ffffff;
+    border-radius: 3px;
+    padding: 3px;
+    box-shadow: 0 1px #ffffff;
+}
+
+.login-box .alert-validable .para{
+    font-style: italic;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
 
 .login-box .login .custom-btn {
     width: 130px;

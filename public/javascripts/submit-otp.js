@@ -3,3 +3,4 @@ function clickEvent(first, last) {
         document.getElementById(last).focus();
     }
 }
+

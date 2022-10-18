@@ -1,8 +1,8 @@
-.col-xl-12{
+.col-xl-12 {
     margin-left: -30px !important;
 }
 
-.col-xl-8{
+.col-xl-8 {
     margin-left: -35px !important;
 }
 
@@ -21,7 +21,7 @@
 }
 
 /* Modal Content/Box */
-.form-fee > .modal-content {
+.form-fee>.modal-content {
     background-color: #fefefe;
     margin: 31px auto;
     padding: 20px;
@@ -59,14 +59,14 @@
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     border-radius: 15px 50px;
     align-self: center;
-    
+
 }
 
 .form-fee #form-content h2 {
     padding: 20px 20px 0px 30px;
 }
 
-.form-fee .form  {
+.form-fee .form {
     padding: 20px;
     /* display: flex; */
 }
@@ -97,7 +97,7 @@
 
 .form-fee #form-info-myself,
 .form-fee #form-info-fee,
-.form-fee #form-info-pay{
+.form-fee #form-info-pay {
     display: inline-grid;
     padding: initial;
 }
@@ -110,12 +110,13 @@
 
 .form-fee .btn-confirm {}
 
-.form-fee .btn-confirm > button {
+.form-fee .btn-confirm>button {
     margin: 10px 20px 20px 10px;
     border-radius: 10px;
     padding: 8px;
     color: #fff;
-    font-weight: bold;;
+    font-weight: bold;
+    ;
     width: 50%;
     margin-left: 30%;
     margin-right: 30%;
@@ -124,7 +125,7 @@
     border: none;
 }
 
-.form-fee .btn-confirm:hover > button {
+.form-fee .btn-confirm:hover>button {
     box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
         7px 7px 20px 0px rgba(0, 0, 0, .1),
         4px 4px 5px 0px rgba(0, 0, 0, .1);
@@ -134,23 +135,49 @@
 }
 
 
-.form-fee #confirm-pay-2 .modal-content{
-   border-radius: 20px;
+.form-fee #confirm-pay-2 .modal-content {
+    border-radius: 20px;
 }
 
-.form-fee #confirm-pay-2 .modal-header{
+.form-fee #confirm-pay-2 .modal-header {
     background-color: #ACB6E5;
 }
 
-.form-fee .modal-footer #close:hover{
-   background-color: red;
+.alert-validatable{
+    /* visibility: hidden; */
+    position: fixed !important;
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    right: 0;
+    top: 90px;
+    max-width: 250px;
+    margin-right: 20px;
+    box-shadow: 5px 4px 10px 1px #000;
 }
 
-.form-fee .modal-footer #submit:hover{
-    background-color: green;
- }
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
 
-.form-fee #confirm-pay-2 .modal-body > p{
+.form-fee .modal-footer #close:hover {
+    background-color: red;
+}
+
+.form-fee .modal-footer #submit:hover {
+    background-color: green;
+}
+
+.form-fee #confirm-pay-2 .modal-body>p {
     font-size: 20px;
 }
 

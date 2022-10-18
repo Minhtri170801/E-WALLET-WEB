@@ -79,13 +79,34 @@ form .userInput{
 form .userInput input{
 	margin: 10px;
 	height: 80px;
-	width: 80px;
+	width: 60px;
 	border: none;
 	border-radius: 5px;
 	text-align: center;
 	font-family: arimo;
 	font-size: 30px;
 	background: #eef2f3;
+}
+
+form .alert-validable{
+    /* visibility: hidden; */
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+form .alert-validable .para{
+    max-width: max-content;
+    font-style: italic;
+    display: block;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    border: 1px solid red;
+    background: red;
+    color: #ffffff;
+    border-radius: 3px;
+    padding: 3px 20px !important;
+    box-shadow: 0 1px #ffffff;
 }
 
 form .submit .custom-btn {
@@ -217,4 +238,30 @@ form .btn-send button{
     background: #ffffff;
     cursor: pointer;
     text-decoration: underline;
+}
+
+
+form .return{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    margin-top: 20px;
+}
+
+form .return .btn-return{
+    padding: 10px 30px 10px 30px;
+    font-weight: bold;
+    border-radius: 10px;
+    border: 0.5px solid #000;
+    background-color: bisque ;
+}
+
+form .return .btn-return:hover{
+    background: red;
+    color: #ffffff;
+}
+
+form .return .btn-return svg{
+    margin-right: 10px;
+    width: 15px;
 }
