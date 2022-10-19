@@ -6,6 +6,7 @@ var Account = require('../models/account');
 const fetch = require('node-fetch');
 const student = require('../models/student');
 const account = require('../models/account');
+const OTP = require('../models/otp');
 /* GET home page. */
 router.get('/', check.isNotLogin, function (req, res) {
   var account = req.session.account;
@@ -49,8 +50,10 @@ router.post('/', function (req, res) {
 
 /* GET OTP page. */
 router.get('/otp', function (req, res) {
+  var account = req.session.account;
   var information = {
     title: 'OTP',
+    email: account.email,
     css: ['otp.css']
   }
   res.render('otp', information);
@@ -82,6 +85,14 @@ router.post('/login', function (req, res) {
   })
 });
 
+/* GET logout. */
+router.get('/reset-OTP', function (req,res) {
+  var account = req.session.account
+  OTP.deleteOne({email: account.email}, (err, result) => {
+    randomOtp.createOTP(account.email);
+    return res.redirect('/otp');
+  })
+})
 /* GET logout. */
 router.get('/logout', function (req, res) {
   req.session.destroy();

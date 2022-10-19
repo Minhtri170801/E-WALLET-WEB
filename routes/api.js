@@ -1,9 +1,10 @@
 const { JSONCookie } = require('cookie-parser');
 var express = require('express');
 var router = express.Router();
-var Student = require('../models/student')
+var Student = require('../models/student');
+var OTP = require('../models/otp');
 
-/* GET users listing. */
+/* GET get information student. */
 router.get('/student/:id', async function(req, res) {
   var id = req.params.id;
   var student = await Student.findOne({attributes: ['MSSV','fullName','fee'], where: {MSSV: id}})

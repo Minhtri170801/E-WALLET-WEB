@@ -8,11 +8,7 @@ function countdown() {
         if (seconds > 0) {
             setTimeout(tick, 1000);
         } else {
-            document.getElementById("verifiBtn").innerHTML = `
-            <div class="btn-resend" id="ResendBtn">
-                <button type="submit">Gửi lại mã</button>
-            </div>
-        `;
+            document.getElementById("reset-OTP").innerHTML = `Gửi lại mã`;
             document.getElementById("counter").innerHTML = "";
         }
     }

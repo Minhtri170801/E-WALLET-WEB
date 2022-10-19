@@ -1,7 +1,7 @@
 <div class="otp-box">
     <form>
         <h1 class="heading">Vui lòng nhập mã OTP đã được gửi vào email của bạn</h1>
-        <p class="para">Mã đã được gửi tới email: xxx@gmail.com</p>
+        <p class="para">Mã đã được gửi tới email: {{email}}</p>
         <div class="userInput">
             <input type="text" id='ist' maxlength="1" onkeyup="clickEvent(this,'sec')">
             <input type="text" id="sec" maxlength="1" onkeyup="clickEvent(this,'third')">
@@ -27,7 +27,7 @@
             </span>
         </p>
         <span class="btn-send" id="verifiBtn">
-            <button type="submit">Mã đã được gửi</button>
+            <a href="/reset-OTP" id="reset-OTP">Mã đã được gửi</a>
         </span>
 
         <div class="return">
