@@ -88,25 +88,31 @@ form .userInput input{
 	background: #eef2f3;
 }
 
-form .alert-validable{
+form .alert{
     /* visibility: hidden; */
     display: flex;
     justify-content: center;
-    width: 100%;
+    max-width: 40%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-form .alert-validable .para{
-    max-width: max-content;
-    font-style: italic;
-    display: block;
-    margin-top: -10px;
-    margin-bottom: 20px;
-    border: 1px solid red;
-    background: red;
+form .alert .para{
+    display: contents;
+    font-size: 16px;
     color: #ffffff;
-    border-radius: 3px;
-    padding: 3px 20px !important;
-    box-shadow: 0 1px #ffffff;
+    font-weight: bold;
+    font-style: italic;
+}
+
+form .alert-success{
+    background-color: #00FF00;
+    opacity: 0.9;
+}
+
+form .alert-fail{
+    background-color: #FF6347;
+    opacity: 0.9;
 }
 
 form .submit .custom-btn {
