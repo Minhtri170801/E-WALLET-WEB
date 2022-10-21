@@ -36,7 +36,7 @@
 
                 <div class="col-12 col-sm-12 col-md-4" id="form-info-fee">
                   <label>Mã số sinh viên</label>
-                  <input type="text" id="mssv" minlength="6" maxlength="8" placeholder="ex: 123456" name="MSSV"
+                  <input class="number-only" type="text" id="mssv" minlength="6" maxlength="8" placeholder="ex: 123456" name="MSSV"
                     required></input>
 
                   <label>Họ tên sinh viên</label>
@@ -94,13 +94,15 @@
         </div>
       </div>
     </form>
-
-    <div class="col-4 col-xl-2 alert alert-fail alert-success">
-      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-      <p class="para">This is a danger alert—check it out!</p>
-    </div>
     {{!-- End Body --}}
 
+    {{!-- Message --}}
+    {{#if message}}
+    <div class="col-4 col-xl-2 alert {{message.type}}">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      <p class="para">{{message.message}}</p>
+    </div> 
+    {{/if}}
     {{!-- Start Footer --}}
     <div class="footer full-bg">
       <h3>

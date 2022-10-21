@@ -9,9 +9,11 @@
             <input type="password" id="password" name="password" required="">
             <label>Mật khẩu</label>
         </div>
-        <div class="alert alert-fail alert-success " role="alert">
-            <p class="para">This is a danger alert—check it out!</p>
+        {{#if message}}
+        <div class="alert {{message.type}}" role="alert">
+            <p class="para">{{message.message}}</p>
         </div>
+        {{/if}}
         <div class="login">
             <button class="custom-btn btn-login" type="submit">
                 <span>Đăng nhập</span>

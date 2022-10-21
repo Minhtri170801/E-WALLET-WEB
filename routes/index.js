@@ -4,11 +4,12 @@ var check = require('../lib/check');
 var randomOtp = require('../lib/randomOTP');
 var Account = require('../models/account');
 const fetch = require('node-fetch');
-const student = require('../models/student');
-const account = require('../models/account');
 const OTP = require('../models/otp');
+const Bill = require('../models/bill');
+const sendMail = require('../lib/sendMail');
+
 /* GET home page. */
-router.get('/', check.isNotLogin, function (req, res) {
+router.get('/', check.isNotLogin, check.isHasTransaction, function (req, res) {
   var account = req.session.account;
 
   var information = {
@@ -32,13 +33,18 @@ router.post('/', function (req, res) {
         Account.findOne({ email: email }, (err, account) => {
           if (err || account == null)
             return res.redirect('/');
-          var st = student.student  
-      
+          var st = student.student
+
           if (account.money < st.fee) {
             //So tien khong du
+            req.session.message = {
+              type: "alert-fail",
+              message: "Tài khoản không đủ số tiền để thanh toán!"
+            }
             return res.redirect('/');
           }
-          randomOtp.createOTP(email);
+          //Tao hoa don
+          new Bill({ email: email, MSSV: MSSV, money: st.fee }).save();
           return res.redirect('/otp');
         })
       }
@@ -49,8 +55,10 @@ router.post('/', function (req, res) {
 })
 
 /* GET OTP page. */
-router.get('/otp', function (req, res) {
+router.get('/otp', check.isNotLogin, check.isNotHasTransaction, function (req, res) {
   var account = req.session.account;
+  //Tao ma otp
+  randomOtp.createOTP(account.email);
   var information = {
     title: 'OTP',
     email: account.email,
@@ -58,6 +66,89 @@ router.get('/otp', function (req, res) {
   }
   res.render('otp', information);
 });
+
+/* POST OTP page */
+router.post('/otp', function (req, res) {
+  var account = req.session.account;
+  var { ist, sec, third, fourth, fifth } = req.body;
+  var inputOTP = ist + sec + third + fourth + fifth;
+
+  //Kiểm tra OTP đúng hay không
+  OTP.findOne({ email: account.email, otp: inputOTP }, (err, otp) => {
+    if (otp) {
+      setImmediate(() => {
+        //Lấy thông tin của hóa đơn
+        Bill.findOne({ email: account.email, isPay: false }, (err, bill) => {
+          //Tiến hành xữ lý trừ học phí của sinh viên
+          fetch('http://localhost:3000/api/student-pay-fee/', {
+            method: 'POST',
+            headers: {
+              "Content-type": "application/json; charset=UTF-8"
+            },
+            body: JSON.stringify({ MSSV: bill.MSSV })
+          })
+            .then((res) => res.json())
+            .then((result) => {
+
+              //Nếu học phí của xinh viên đã thanh toán thành công
+              if (result.code == 0) {
+                return res.redirect(307, '/pay-success');
+              }
+              //Nếu học phí của sinh viên đã có người khác thanh toán
+              else {
+                return res.redirect(307,'/pay-fail');
+              }
+            })
+        })
+      })
+    }
+    else {
+      req.session.message = {
+        type: "alert-fail",
+        message: "Mã OTP không đúng!"
+      }
+      return res.redirect('/otp')
+    }
+  })
+})
+
+/* POSt handle success */
+router.post('/pay-success', (req, res) => {
+  var account = req.session.account;
+  //Chuyển trạng thái hóa đơn sang thành công
+  Bill.findOneAndUpdate({ email: account.email, isPay: false }, { isPay: true }, (err, bill) => {
+    //Trừ tiên trong tài khoản
+    Account.findOneAndUpdate({ email: account.email }, { money: account.money - bill.money }, (err, account1) => {
+      req.session.account = account1;
+      //Gửi mail hóa đơn
+      sendMail.sendBill(account1.email, bill.money, bill.MSSV);
+      req.session.message = {
+        type: "alert-success",
+        message: "Thanh toán học phí thành công!"
+      }
+      res.redirect('/')
+    });
+  });
+})
+
+/* POST handle fail */
+router.post('/pay-fail', (req,res) => {
+  var account = req.session.account
+  //Hủy hóa đơn
+  Bill.deleteOne({ email: account.email, isPay: false }, (err, bill) => {
+    req.session.message = {
+      type: "alert-fail",
+      message: "Học phí sinh viên này đã được thanh toán trước đó!"
+    }
+    res.redirect('/');
+  })
+})
+/* GET cancel transaction */
+router.get('/cancel-transaction', check.isNotLogin, check.isNotHasTransaction, function (req, res) {
+  var account = req.session.account
+  Bill.deleteOne({ email: account.email, isPay: false }, (err, result) => { });
+  res.redirect('/');
+})
 
 /* GET login page. */
 router.get('/login', check.isLogin, function (req, res) {
@@ -74,10 +165,13 @@ router.get('/login', check.isLogin, function (req, res) {
 /* POST login page. */
 router.post('/login', function (req, res) {
   var { username, password } = req.body;
-
   Account.findOne({ username: username, password: password }, (err, account) => {
     if (err || account == null) {
       res.cookie("username", username);
+      req.session.message = {
+        type: "alert-fail",
+        message: "Tài khoản hoặc mật khẩu không hợp lệ!"
+      }
       return res.redirect('/login');
     }
     req.session.account = account;
@@ -85,14 +179,6 @@ router.post('/login', function (req, res) {
   })
 });
 
-/* GET logout. */
-router.get('/reset-OTP', function (req,res) {
-  var account = req.session.account
-  OTP.deleteOne({email: account.email}, (err, result) => {
-    randomOtp.createOTP(account.email);
-    return res.redirect('/otp');
-  })
-})
 /* GET logout. */
 router.get('/logout', function (req, res) {
   req.session.destroy();

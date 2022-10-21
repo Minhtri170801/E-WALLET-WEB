@@ -1,20 +1,19 @@
 <div class="otp-box">
-    <form>
+    <form method="POST">
         <h1 class="heading">Vui lòng nhập mã OTP đã được gửi vào email của bạn</h1>
         <p class="para">Mã đã được gửi tới email: {{email}}</p>
         <div class="userInput">
-            <input type="text" id='ist' maxlength="1" onkeyup="clickEvent(this,'sec')">
-            <input type="text" id="sec" maxlength="1" onkeyup="clickEvent(this,'third')">
-            <input type="text" id="third" maxlength="1" onkeyup="clickEvent(this,'fourth')">
-            <input type="text" id="fourth" maxlength="1" onkeyup="clickEvent(this,'fifth')">
-            <input type="text" id="fifth" maxlength="1">
+            <input class="number-only" type="text" name="ist" id='ist' maxlength="1" onkeyup="clickEvent(this,'sec')" required="">
+            <input class="number-only" type="text" name="sec" id="sec" maxlength="1" onkeyup="clickEvent(this,'third')" required="">
+            <input class="number-only" type="text" name="third" id="third" maxlength="1" onkeyup="clickEvent(this,'fourth')" required="">
+            <input class="number-only" type="text" name="fourth" id="fourth" maxlength="1" onkeyup="clickEvent(this,'fifth')" required="">
+            <input class="number-only" type="text" name="fifth" id="fifth" maxlength="1" required="">
         </div>
-        {{!-- <div class="alert alert-danger mx-auto col-10 col-sm-10 col-md-8" role="alert">
-            This is a danger alert—check it out!
-        </div> --}}
-        <div class="alert alert-fail alert-success" role="alert">
-            <p class="para">This is a danger alert—check it out!</p>
+        {{#if message}}
+        <div class="alert {{message.type}}" role="alert">
+            <p class="para">{{message.message}}</p>
         </div>
+        {{/if}}
         <div class="submit">
             <button class="custom-btn btn-submit" type="submit">
                 <span>Xác nhận</span>
@@ -27,11 +26,11 @@
             </span>
         </p>
         <span class="btn-send" id="verifiBtn">
-            <a href="/reset-OTP" id="reset-OTP">Mã đã được gửi</a>
+            <a href="/otp" id="reset-OTP">Mã đã được gửi</a>
         </span>
 
         <div class="return">
-            <button class="btn-return" type="button" onclick="history.go(-2)">
+            <button class="btn-return" type="button" onclick="document.location='/cancel-transaction'">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-arrow-left-square-fill"
                     viewBox="0 0 16 16">
                     <path
