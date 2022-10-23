@@ -8,6 +8,7 @@ const OTP = require('../models/otp');
 const Bill = require('../models/bill');
 const sendMail = require('../lib/sendMail');
 
+var linkAPI = `http://localhost:${process.env.PORT}/api`
 /* GET home page. */
 router.get('/', check.isNotLogin, check.isHasTransaction, function (req, res) {
   var account = req.session.account;
@@ -26,7 +27,7 @@ router.get('/', check.isNotLogin, check.isHasTransaction, function (req, res) {
 /* POST home page. */
 router.post('/', function (req, res) {
   var { email, MSSV } = req.body;
-  fetch('http://localhost:3000/api/student/' + MSSV)
+  fetch(linkAPI+'/student/' + MSSV)
     .then(res => res.json())
     .then(student => {
       if (student.code == 0) {
@@ -34,6 +35,15 @@ router.post('/', function (req, res) {
           if (err || account == null)
             return res.redirect('/');
           var st = student.student
+
+          if (st.fee == 0) {
+            //So tien khong du
+            req.session.message = {
+              type: "alert-fail",
+              message: "Sinh viên này không có học phí!"
+            }
+            return res.redirect('/');
+          }
 
           if (account.money < st.fee) {
             //So tien khong du
@@ -80,7 +90,7 @@ router.post('/otp', function (req, res) {
         //Lấy thông tin của hóa đơn
         Bill.findOne({ email: account.email, isPay: false }, (err, bill) => {
           //Tiến hành xữ lý trừ học phí của sinh viên
-          fetch('http://localhost:3000/api/student-pay-fee/', {
+          fetch(linkAPI+'/student-pay-fee/', {
             method: 'POST',
             headers: {
               "Content-type": "application/json; charset=UTF-8"
@@ -118,10 +128,10 @@ router.post('/pay-success', (req, res) => {
   //Chuyển trạng thái hóa đơn sang thành công
   Bill.findOneAndUpdate({ email: account.email, isPay: false }, { isPay: true }, (err, bill) => {
     //Trừ tiên trong tài khoản
-    Account.findOneAndUpdate({ email: account.email }, { money: account.money - bill.money }, (err, account1) => {
+    Account.findOneAndUpdate({ email: account.email }, {money: account.money - bill.money, $push: {historyTransaction: bill.MaHD}}, (err, account1) => {
       req.session.account = account1;
       //Gửi mail hóa đơn
-      sendMail.sendBill(account1.email, bill.money, bill.MSSV);
+      sendMail.sendBill(account1.email, bill.money, bill.MSSV, bill.MaHD);
       req.session.message = {
         type: "alert-success",
         message: "Thanh toán học phí thành công!"

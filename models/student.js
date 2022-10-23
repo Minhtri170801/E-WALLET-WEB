@@ -1,12 +1,21 @@
 const { Sequelize, DataTypes} = require('sequelize');
-const { db } = require('./account');
 /**
 * Kết nối MySQL.
 */
-const school = new Sequelize('school', 'root', '', {
-    host: 'localhost',
-    dialect: 'mysql'
-});
+var school
+switch(process.env.MODE) {
+  case 'production':
+    school = new Sequelize('', '', '', {
+        host: '',
+        dialect: 'mysql'
+    });
+    break;
+  default:
+    school = new Sequelize('school', 'root', '', {
+        host: 'localhost',
+        dialect: 'mysql'
+    });
+}
 
 //Kiểm tra kết nối
 school.authenticate().then(() => console.log("Kết nối MySQL thành công!"))

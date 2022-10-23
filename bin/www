@@ -1,9 +1,8 @@
 #!/usr/bin/env node
-
+require('dotenv').config();
 /**
  * Module dependencies.
  */
-
 var app = require('../app');
 var debug = require('debug')('gk-soa:server');
 var http = require('http');
@@ -12,7 +11,16 @@ var mongoose = require('mongoose');
 /**
 * Kết nối MongoDB.
 */
-mongoose.connect('mongodb+srv://root:Root123@cluster0.ckuexai.mongodb.net/SOA_GK?retryWrites=true&w=majority', {
+var mongodb_URL = ''
+switch(process.env.MODE) {
+  case 'production':
+    mongodb_URL = '';
+    break;
+  default:
+    mongodb_URL = 'mongodb+srv://root:Root123@cluster0.ckuexai.mongodb.net/SOA_GK?retryWrites=true&w=majority'
+}
+
+mongoose.connect(mongodb_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => console.log("Kết nối MongoDB thành công!"))
