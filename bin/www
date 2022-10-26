@@ -17,7 +17,7 @@ switch(process.env.MODE) {
     mongodb_URL = '';
     break;
   default:
-    mongodb_URL = 'mongodb+srv://root:Root123@cluster0.ckuexai.mongodb.net/SOA_GK?retryWrites=true&w=majority'
+    mongodb_URL = 'mongodb://127.0.0.1:27017/SOA_GK'
 }
 
 mongoose.connect(mongodb_URL, {
