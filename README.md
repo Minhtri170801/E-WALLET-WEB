@@ -23,8 +23,8 @@
 
 ### Thay đổi environment trong file .evn (Nếu muốn):
 - **MODE**: Hiện đang là chế độ development. Nếu nhập MODE=production thì sẽ chạy ở chế độ production với các database của MongoBD và MySQL của chế độ production (**Lưu ý cần nhập địa chỉ kết nối với MongoDB và MySQL khi chạy chế độ production, có thể thêm địa chỉ kết nối với MongoDB ở dòng 17 trong file /bin/www và MySQL ở dòng 8 trong file /models/student.js**).  
-- **PORT**: Hiện đang dùng là port 5000 
-- **MAIL_USERNAME**:
+- **PORT**: Hiện đang dùng là port 5000 (Nếu thay đổi...)
+- **MAIL_USERNAME**: 
 - **MAIL_PASSWORD**:
 
 ### Lệnh thực thi chương trình:
