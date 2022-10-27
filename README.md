@@ -22,12 +22,12 @@
     - B6: Kiểm tra xem đã có dữ liêu trong 2 collection **"accounts"** và **"bills"**
 
 ### Thay đổi environment trong file .evn (Nếu muốn):
-- **MODE**:
-- **PORT**:
+- **MODE**: Hiện đang là chế độ development. Nếu nhập MODE=production thì sẽ chạy ở chế độ production với các database của MongoBD và MySQL của chế độ production (**Lưu ý cần nhập địa chỉ kết nối với MongoDB và MySQL khi chạy chế độ production, có thể thêm địa chỉ kết nối với MongoDB ở dòng 17 trong file /bin/www và MySQL ở dòng 8 trong file /models/student.js**).  
+- **PORT**: Hiện đang dùng là port 5000 
 - **MAIL_USERNAME**:
 - **MAIL_PASSWORD**:
 
 ### Lệnh thực thi chương trình:
-    Mở Command Prompt tại thư mục của chương trình và chạy lệnh **"npm start"**
+Mở Command Prompt tại thư mục của chương trình và chạy lệnh **"npm start"**
 ### Kiểm tra:
-    Sau khi thực thi chương trình và không có thông báo lỗi thì kiểm tra cửa sổ terminal xem có 2 dòng thông báo là "Kết nối MongoDB thành công!" và "Kết nối MySQL thành công!". Nếu có 2 dòng thông báo đó thì là trang web đã sẵn sàng 
+Sau khi thực thi chương trình và không có thông báo lỗi thì kiểm tra cửa sổ terminal xem có 2 dòng thông báo là "Kết nối MongoDB thành công!" và "Kết nối MySQL thành công!". Nếu có 2 dòng thông báo đó thì là trang web đã sẵn sàng 
