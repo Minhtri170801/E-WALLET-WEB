@@ -1,0 +1,35 @@
+[{
+  "_id": {
+    "$oid": "6358f1d039b18f1c1687a251"
+  },
+  "name": "admin",
+  "phoneNumber": "987493274",
+  "email": "admin@gmail.com",
+  "username": "admin",
+  "password": "admin123",
+  "money": 300000000
+},{
+  "_id": {
+    "$oid": "6358f23d39b18f1c1687a252"
+  },
+  "name": "Hứa Phúc Dũng",
+  "phoneNumber": "3442434894345",
+  "email": "huaphucdung2001@gmail.com",
+  "username": "phucdung",
+  "password": "123456",
+  "money": 1000000,
+  "historyTransaction": [
+    "HD1666509671807",
+    "HD1666773716770"
+  ]
+},{
+  "_id": {
+    "$oid": "635f3ce2364267316bcb0e12"
+  },
+  "name": "quang",
+  "phoneNumber": "987493274",
+  "email": "nguyenngocdangquang14274@gmail.com",
+  "username": "quang",
+  "password": "quang1405",
+  "money": 300000000
+}]

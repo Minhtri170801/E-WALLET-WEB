@@ -1,0 +1,27 @@
+[{
+  "_id": {
+    "$oid": "6358f2d139b18f1c1687a253"
+  },
+  "MaHD": "HD1666509671807",
+  "email": "huaphucdung2001@gmail.com",
+  "MSSV": "51900432",
+  "money": 500000,
+  "isPay": true,
+  "time": {
+    "$date": "2022-10-23T07:21:11.807Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6358f3b019e4895803c8f30b"
+  },
+  "MaHD": "HD1666773716770",
+  "email": "huaphucdung2001@gmail.com",
+  "MSSV": "51900342",
+  "money": 23400000,
+  "isPay": true,
+  "time": {
+    "$date": "2022-10-26T08:41:56.770Z"
+  },
+  "__v": 0
+}]
