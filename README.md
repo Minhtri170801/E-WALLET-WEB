@@ -29,6 +29,8 @@
 
 ### Lệnh thực thi chương trình:
 Mở Command Prompt tại thư mục của project và chạy lệnh **"npm start"**
+
+    npm start
 ### Kiểm tra:
 Sau khi thực thi chương trình và không có thông báo lỗi thì kiểm tra cửa sổ terminal xem có 2 dòng thông báo là "Kết nối MongoDB thành công!" và "Kết nối MySQL thành công!". Nếu có 2 dòng thông báo đó thì là trang web đã sẵn sàng (Nều có lỗi thì kiểm tra lại kết nối với MySQL và MongoDB)
 
