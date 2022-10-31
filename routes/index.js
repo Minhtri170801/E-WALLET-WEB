@@ -129,7 +129,7 @@ router.post('/pay-success', (req, res) => {
   Bill.findOneAndUpdate({ email: account.email, isPay: false }, { isPay: true }, (err, bill) => {
     //Trừ tiên trong tài khoản
     Account.findOneAndUpdate({ email: account.email }, {money: account.money - bill.money, $push: {historyTransaction: bill.MaHD}}, (err, account1) => {
-      req.session.account = account1;
+      req.session.account.money = req.session.account.money - bill.money;
       //Gửi mail hóa đơn
       sendMail.sendBill(account1.email, bill.money, bill.MSSV, bill.MaHD);
       req.session.message = {
