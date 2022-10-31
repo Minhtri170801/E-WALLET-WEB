@@ -41,3 +41,12 @@ Sau khi thực thi chương trình và không có thông báo lỗi thì kiểm 
 Link:
 
     localhost:5000
+    
+### Tài khoản thanh toán mẫu:
+> Tên đăng nhập: quang  
+>
+>Mật khẩu: quang1405 
+
+> Tên đăng nhập: phucdung  
+>
+>Mật khẩu: 123456 
