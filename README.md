@@ -25,14 +25,14 @@
 - **MODE**: Hiện đang là chế độ development. Nếu nhập MODE=production thì chương trình sẽ chạy ở chế độ production với các database của MongoBD và MySQL của chế độ production (**Lưu ý cần nhập địa chỉ kết nối với MongoDB và MySQL khi chạy chế độ production, có thể thêm địa chỉ kết nối với MongoDB ở dòng 17 trong file /bin/www và MySQL ở dòng 8 trong file /models/student.js**).  
 - **PORT**: Hiện đang dùng là port 5000 (**Nếu có thay đổi port, thì chạy localhost với số số port tương ứng**)
 - **MAIL_USERNAME**: Hiện đang dùng tài khoản mail cá nhân của bạn Nguyễn Ngọc Đăng Quang (Có thể thay đổi bằng tài khoản email khác) 
-- **MAIL_PASSWORD**: Nếu không vẫn dùng emil của bạn Nguyễn Ngọc Đăng Quang thì không cần thay đổi tham số này (Nếu dùng một tài khoản mail khác cần có key tương ứng của tài khoản rồi bỏ vào đây)
+- **MAIL_PASSWORD**: Nếu vẫn dùng emil của bạn Nguyễn Ngọc Đăng Quang thì không cần thay đổi tham số này (Nếu dùng một tài khoản mail khác thì cần có key tương ứng của tài khoản rồi bỏ vào đây)
 
 ### Lệnh thực thi chương trình:
 Mở Command Prompt tại thư mục của project và chạy lệnh **"npm start"**
 
     npm start
 ### Kiểm tra:
-Sau khi thực thi chương trình và không có thông báo lỗi thì kiểm tra cửa sổ terminal xem có 2 dòng thông báo là "Kết nối MongoDB thành công!" và "Kết nối MySQL thành công!". Nếu có 2 dòng thông báo đó thì là trang web đã sẵn sàng (Nều có lỗi thì kiểm tra lại kết nối với MySQL và MongoDB)
+Sau khi thực thi chương trình và không có thông báo lỗi thì kiểm tra cửa sổ terminal xem có 2 dòng thông báo là "Kết nối MongoDB thành công!" và "Kết nối MySQL thành công!". Nếu có 2 dòng thông báo đó thì là trang web đã sẵn sàng (Nều có lỗi thì kiểm tra lại kết nối với MySQL, MongoDB và chạy lại chương trình một lần nữa)
 
 ### Truy cập trang web:
 - B1: Mở browser
@@ -42,7 +42,7 @@ Link:
 
     localhost:5000
     
-### Tài khoản thanh toán mẫu:
+### Các tài khoản thanh toán mẫu:
 > Tên đăng nhập: quang  
 >
 >Mật khẩu: quang1405 
