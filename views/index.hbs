@@ -20,8 +20,13 @@
               <img src="/images/img-banking.jpeg" alt="">
             </div>
 
-            <div class="col-12 col-lg-12 col-xl-8 pl-0 pr-0 " id="form-content">
+            <div class="col-12 col-lg-12 col-xl-8 pl-0 pr-0" id="form-content">
               <h2>Internet Banking</h2>
+              <div class="ml-4 pl-1">
+                <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#myModal">
+                  Lịch sử giao dịch
+                </button>
+              </div>
               <div class="form">
                 <div class="col-12 col-sm-12 col-md-4" id="form-info-myself">
                   <label>Họ và tên</label>
@@ -36,8 +41,8 @@
 
                 <div class="col-12 col-sm-12 col-md-4" id="form-info-fee">
                   <label>Mã số sinh viên</label>
-                  <input class="number-only" type="text" id="mssv" minlength="6" maxlength="8" placeholder="ex: 123456" name="MSSV"
-                    required></input>
+                  <input class="number-only" type="text" id="mssv" minlength="6" maxlength="8" placeholder="ex: 123456"
+                    name="MSSV" required></input>
 
                   <label>Họ tên sinh viên</label>
                   <input type="text" id="name-student" readonly></input>
@@ -68,7 +73,7 @@
                   Xác nhận
                 </button>
 
-                <!-- Modal -->
+                <!-- Modal1 -->
                 <div class="modal fade" id="confirm-pay-2" tabindex="-1" role="dialog" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -88,6 +93,48 @@
                     </div>
                   </div>
                 </div>
+                <!-- End Modal1 -->
+
+                <!-- Modal2 -->
+                <div class="modal fade" id="myModal">
+                  <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title">Lịch sử giao dịch</h1>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      <div class="modal-body">
+                        <table>
+                          <thead>
+                            <tr class="col-thead">
+                              <th scope="col">Mã hóa đơn</th>
+                              <th scope="col">Tên sinh viên</th>
+                              <th scope="col">Mã số sinh viên</th>
+                              <th scope="col">Số tiền</th>
+                              <th scope="col">Ngày giao dịch</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {{#each historyTransaction}}
+                              <tr class="col-tbody">
+                                <td data-label="bill-id">{{this.MaHD}}</td>
+                                <td data-label="name">{{this.studentName}}</td>
+                                <td data-label="student-id">{{this.MSSV}}</td>
+                                <td data-label="price">{{this.money}}</td>
+                                <td data-label="datetime">{{this.time}}</td>
+                              </tr>
+                            {{/each}}
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- End Modal2 -->
+
               </div>
             </div>
           </div>
@@ -101,7 +148,7 @@
     <div class="col-4 col-xl-2 alert {{message.type}}">
       <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
       <p class="para">{{message.message}}</p>
-    </div> 
+    </div>
     {{/if}}
     {{!-- Start Footer --}}
     <div class="footer full-bg">

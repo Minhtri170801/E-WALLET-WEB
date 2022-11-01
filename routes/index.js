@@ -10,8 +10,9 @@ const sendMail = require('../lib/sendMail');
 
 var linkAPI = `http://localhost:${process.env.PORT}/api`
 /* GET home page. */
-router.get('/', check.isNotLogin, check.isHasTransaction, function (req, res) {
+router.get('/', check.isNotLogin, check.isHasTransaction, async function (req, res) {
   var account = req.session.account;
+  var historyTransaction = await Bill.find({ MaHD: { $in: account.historyTransaction }, isPay: true });
 
   var information = {
     title: 'Đóng học phí',
@@ -19,7 +20,8 @@ router.get('/', check.isNotLogin, check.isHasTransaction, function (req, res) {
     phone: account.phoneNumber,
     email: account.email,
     money: account.money,
-    css: ['style.css', 'form-fee.css', 'login.css']
+    historyTransaction: historyTransaction,
+    css: ['style.css', 'form-fee.css', 'login.css', 'transaction-history.css']
   }
   res.render('index', information);
 });
@@ -27,36 +29,35 @@ router.get('/', check.isNotLogin, check.isHasTransaction, function (req, res) {
 /* POST home page. */
 router.post('/', function (req, res) {
   var { email, MSSV } = req.body;
-  fetch(linkAPI+'/student/' + MSSV)
+  fetch(linkAPI + '/student/' + MSSV)
     .then(res => res.json())
-    .then(student => {
+    .then(async (student) => {
       if (student.code == 0) {
-        Account.findOne({ email: email }, (err, account) => {
-          if (err || account == null)
-            return res.redirect('/');
-          var st = student.student
+        var account = await Account.findOne({ email: email });
 
-          if (st.fee == 0) {
-            //So tien khong du
-            req.session.message = {
-              type: "alert-fail",
-              message: "Sinh viên này không có học phí!"
-            }
-            return res.redirect('/');
-          }
+        var st = student.student
 
-          if (account.money < st.fee) {
-            //So tien khong du
-            req.session.message = {
-              type: "alert-fail",
-              message: "Tài khoản không đủ số tiền để thanh toán!"
-            }
-            return res.redirect('/');
+        if (st.fee == 0) {
+          //So tien khong du
+          req.session.message = {
+            type: "alert-fail",
+            message: "Sinh viên này không có học phí!"
           }
-          //Tao hoa don
-          new Bill({ email: email, MSSV: MSSV, money: st.fee }).save();
-          return res.redirect('/otp');
-        })
+          return res.redirect('/');
+        }
+
+        if (account.money < st.fee) {
+          //So tien khong du
+          req.session.message = {
+            type: "alert-fail",
+            message: "Tài khoản không đủ số tiền để thanh toán!"
+          }
+          return res.redirect('/');
+        }
+        //Tao hoa don 
+        new Bill({ email: email, MSSV: MSSV, studentName: st.fullName, money: st.fee }).save();
+        return res.redirect('/otp'); 
+        
       }
       else {
         return res.redirect('/');
@@ -78,71 +79,72 @@ router.get('/otp', check.isNotLogin, check.isNotHasTransaction, function (req, r
 });
 
 /* POST OTP page */
-router.post('/otp', function (req, res) {
+router.post('/otp', async function (req, res) {
   var account = req.session.account;
   var { ist, sec, third, fourth, fifth } = req.body;
   var inputOTP = ist + sec + third + fourth + fifth;
 
   //Kiểm tra OTP đúng hay không
-  OTP.findOne({ email: account.email, otp: inputOTP }, (err, otp) => {
-    if (otp) {
-      setImmediate(() => {
-        //Lấy thông tin của hóa đơn
-        Bill.findOne({ email: account.email, isPay: false }, (err, bill) => {
-          //Tiến hành xữ lý trừ học phí của sinh viên
-          fetch(linkAPI+'/student-pay-fee/', {
-            method: 'POST',
-            headers: {
-              "Content-type": "application/json; charset=UTF-8"
-            },
-            body: JSON.stringify({ MSSV: bill.MSSV })
-          })
-            .then((res) => res.json())
-            .then((result) => {
-
-              //Nếu học phí của xinh viên đã thanh toán thành công
-              if (result.code == 0) {
-                return res.redirect(307, '/pay-success');
-              }
-              //Nếu học phí của sinh viên đã có người khác thanh toán
-              else {
-                return res.redirect(307,'/pay-fail');
-              }
-            })
-        })
+  var otp = await OTP.findOne({ email: account.email, otp: inputOTP });
+  if (otp) {
+    setImmediate(async () => {
+      //Lấy thông tin của hóa đơn
+      var bill = await Bill.findOne({ email: account.email, isPay: false })
+      //Tiến hành xữ lý trừ học phí của sinh viên
+      fetch(linkAPI + '/student-pay-fee/', {
+        method: 'POST',
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        },
+        body: JSON.stringify({ MSSV: bill.MSSV })
       })
+        .then((res) => res.json())
+        .then((result) => {
+          //Nếu học phí của xinh viên đã thanh toán thành công
+          if (result.code == 0) {
+            return res.redirect(307, '/pay-success');
+          }
+          //Nếu học phí của sinh viên đã có người khác thanh toán
+          else {
+            return res.redirect(307, '/pay-fail');
+          }
+        })
+    })
+  }
+  else {
+    req.session.message = {
+      type: "alert-fail",
+      message: "Mã OTP không đúng!"
     }
-    else {
-      req.session.message = {
-        type: "alert-fail",
-        message: "Mã OTP không đúng!"
-      }
-      return res.redirect('/otp')
-    }
-  })
+    return res.redirect('/otp')
+  }
 })
 
 /* POSt handle success */
-router.post('/pay-success', (req, res) => {
+router.post('/pay-success', async (req, res) => {
   var account = req.session.account;
   //Chuyển trạng thái hóa đơn sang thành công
-  Bill.findOneAndUpdate({ email: account.email, isPay: false }, { isPay: true }, (err, bill) => {
-    //Trừ tiên trong tài khoản
-    Account.findOneAndUpdate({ email: account.email }, {money: account.money - bill.money, $push: {historyTransaction: bill.MaHD}}, (err, account1) => {
-      req.session.account.money = req.session.account.money - bill.money;
-      //Gửi mail hóa đơn
-      sendMail.sendBill(account1.email, bill.money, bill.MSSV, bill.MaHD);
-      req.session.message = {
-        type: "alert-success",
-        message: "Thanh toán học phí thành công!"
-      }
-      res.redirect('/')
-    });
-  });
+  var bill = await Bill.findOneAndUpdate({ email: account.email, isPay: false }, { isPay: true });
+  //Trừ tiên trong tài khoản
+  var account = await Account.findOneAndUpdate({ email: account.email }, { money: account.money - bill.money, $push: { historyTransaction: bill.MaHD } });
+
+  account.money = account.money - bill.money;
+  account.historyTransaction.push(bill.MaHD);
+
+  req.session.account = account;
+
+  //Gửi mail hóa đơn
+  sendMail.sendBill(account.email, bill.money, bill.MSSV, bill.MaHD);
+  req.session.message = {
+    type: "alert-success",
+    message: "Thanh toán học phí thành công!"
+  }
+  res.redirect('/')
+
 })
 
 /* POST handle fail */
-router.post('/pay-fail', (req,res) => {
+router.post('/pay-fail', (req, res) => {
   var account = req.session.account
   //Hủy hóa đơn
   Bill.deleteOne({ email: account.email, isPay: false }, (err, bill) => {
@@ -154,9 +156,9 @@ router.post('/pay-fail', (req,res) => {
   })
 })
 /* GET cancel transaction */
-router.get('/cancel-transaction', check.isNotLogin, check.isNotHasTransaction, function (req, res) {
+router.get('/cancel-transaction', check.isNotLogin, check.isNotHasTransaction, async function (req, res) {
   var account = req.session.account
-  Bill.deleteOne({ email: account.email, isPay: false }, (err, result) => { });
+  var bill = await Bill.deleteOne({ email: account.email, isPay: false });
   res.redirect('/');
 })
 
@@ -173,20 +175,19 @@ router.get('/login', check.isLogin, function (req, res) {
 });
 
 /* POST login page. */
-router.post('/login', function (req, res) {
+router.post('/login', async function (req, res) {
   var { username, password } = req.body;
-  Account.findOne({ username: username, password: password }, (err, account) => {
-    if (err || account == null) {
-      res.cookie("username", username);
-      req.session.message = {
-        type: "alert-fail",
-        message: "Tài khoản hoặc mật khẩu không hợp lệ!"
-      }
-      return res.redirect('/login');
+  var account = await Account.findOne({ username: username, password: password })
+  if (account == null) {
+    res.cookie("username", username);
+    req.session.message = {
+      type: "alert-fail",
+      message: "Tài khoản hoặc mật khẩu không hợp lệ!"
     }
-    req.session.account = account;
-    return res.redirect('/');
-  })
+    return res.redirect('/login');
+  }
+  req.session.account = account;
+  return res.redirect('/');
 });
 
 /* GET logout. */

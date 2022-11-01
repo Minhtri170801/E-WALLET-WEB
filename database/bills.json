@@ -1,27 +1,37 @@
 [{
   "_id": {
-    "$oid": "6358f2d139b18f1c1687a253"
+    "$oid": "6360f585b02b05163ebd0e25"
   },
-  "MaHD": "HD1666509671807",
+  "MaHD": "HD53771667298660490",
   "email": "huaphucdung2001@gmail.com",
-  "MSSV": "51900432",
-  "money": 500000,
+  "MSSV": "51900342",
+  "studentName": "Nguyễn Xuân Việt",
+  "money": 45000,
   "isPay": true,
-  "time": {
-    "$date": "2022-10-23T07:21:11.807Z"
-  },
+  "time": "11/1/2022 17:31:0",
   "__v": 0
 },{
   "_id": {
-    "$oid": "6358f3b019e4895803c8f30b"
+    "$oid": "6360f5d4b02b05163ebd0e32"
   },
-  "MaHD": "HD1666773716770",
+  "MaHD": "HD53771667298660490",
   "email": "huaphucdung2001@gmail.com",
-  "MSSV": "51900342",
-  "money": 23400000,
+  "MSSV": "51900432",
+  "studentName": "Nguyễn Văn Tuấn",
+  "money": 6000000,
   "isPay": true,
-  "time": {
-    "$date": "2022-10-26T08:41:56.770Z"
+  "time": "11/1/2022 17:34:32",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6360f7004db86dde9e930b0f"
   },
+  "MaHD": "HD66181667299053298",
+  "email": "huaphucdung2001@gmail.com",
+  "MSSV": "51900002",
+  "studentName": "Trần Thu Hà",
+  "money": 2000000,
+  "isPay": true,
+  "time": "11/1/2022 17:37:33",
   "__v": 0
 }]
